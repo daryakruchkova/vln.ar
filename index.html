@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кнопки в контейнерах</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a2e;
+            font-family: Arial, sans-serif;
+            padding: 40px 20px;
+            gap: 40px;
+        }
+
+        /* ГРУППА (основная) */
+        .group {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .group-title {
+            color: white;
+            font-size: 22px;
+            font-weight: 300;
+            margin-bottom: 15px;
+            text-align: center;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .group-title .emoji {
+            margin-right: 10px;
+        }
+
+        .buttons-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        /* ========================================================== */
+        /* 🔴 КОНТЕЙНЕР ДЛЯ КАЖДОЙ КНОПКИ С ПОДЗАГОЛОВКОМ 🔴          */
+        /* ========================================================== */
+        .btn-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 220px;
+            flex: 0 0 auto
+        }
+
+        .btn-wrapper .btn-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-align: center;
+            min-height: 20px;
+        }
+
+        /* Стиль кнопки */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            min-width: 250px;
+            max-width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn .icon {
+            font-size: 20px;
+        }
+
+        /* ========================================================== */
+        /* 🔴 ДОПОЛНИТЕЛЬНЫЕ КНОПКИ В СТОЛБИК (появляются под основной) 🔴 */
+        /* ========================================================== */
+        .sub-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sub-group-title {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .sub-group .buttons-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .sub-group .btn {
+            padding: 10px 18px;
+            font-size: 14px;
+            min-width: 160px;
+            width: 100%;
+            justify-content: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+        }
+
+        .sub-group .btn:hover {
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.5);
+        }
+
+        /* Модальное окно */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            max-height: 80vh;
+        }
+
+        .modal iframe {
+            width: 100%;
+            height: 450px;
+            display: block;
+            border: none;
+        }
+
+        .modal .text-content {
+            padding: 40px;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+
+        .modal .text-content h2 {
+            color: #1a1a2e;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .modal .text-content p {
+            color: #333;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .modal .text-content ul {
+            color: #333;
+            font-size: 17px;
+            line-height: 1.8;
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 32px;
+            cursor: pointer;
+            line-height: 1;
+            margin: 10px 15px 0 0;
+            z-index: 10;
+        }
+
+        .close-btn:hover {
+            color: #f5576c;
+        }
+        .divider-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 100%;
+            padding: 0 20px;
+        }
+        .divider {
+            width: 80%;
+            max-width: 600px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+            margin: 20px auto 20px auto
+        }
+
+        @media (max-width: 600px) {
+            .btn-wrapper {
+                width: 100%;
+                max-width: 280px;
+            }
+            .btn {
+                padding: 14px 20px;
+                font-size: 16px;
+                min-width: 150px;
+            }
+            .sub-group .btn {
+                padding: 10px 16px;
+                font-size: 13px;
+                min-width: 140px;
+            }
+            .modal iframe {
+                height: 250px;
+            }
+            .modal .text-content {
+                padding: 25px 20px;
+            }
+            .group-title {
+                font-size: 18px;
+            }
+            .buttons-grid {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- ГРУППА: ВИДЕОУРОКИ                                           -->
+    <!-- ============================================================ -->
+    <div class="group">
+        <div class="group-title">
+            VLN.AR
+        </div>
+        <!-- ============================================================ -->
+<!-- ГРУППА: НАЧАЛО (одна большая кнопка по центру)              -->
+<!-- ============================================================ -->
+<div class="group" style="margin-bottom: 20px;">
+    <div class="buttons-grid" style="justify-content: center;">
+        <div class="btn-wrapper" style="width: 100%; max-width: 600px; flex: 0 0 auto;">
+            
+            <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1Z9kugfB9Mi1VXtJZrZqO1X2mwGhtHViy68uwfP0xsCc/edit">
+                Стандарт моделирования
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+        <div class="buttons-grid">
+
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 1: Оси и уровни 🔴                               -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+            
+                <button class="btn" data-type="video" data-id="1Dn-IiGDlYLrjzX3uHPTgM0c9maWz8IID">
+                    Оси и уровни
+                </button>
+                <!-- Дополнительные кнопки -->
+                <div class="sub-group">
+                    <div class="sub-group-title">Дополнительно</div>
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1Z9kugfB9Mi1VXtJZrZqO1X2mwGhtHViy68uwfP0xsCc/edit">
+                            Наименование
+                        </button>
+                        <!-- 🔴🔴🔴 НОВАЯ КНОПКА СО ССЫЛКОЙ 🔴🔴🔴 -->
+                        <button class="btn" data-type="link" data-url="https://rbi.standard.ds.do/index.php/ds-knowledge-base/bim-standard/ds4/%d0%be%d1%81%d0%b8/">
+                            Моделирование
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 2: Перекрытия 🔴                               -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="1O8wlJylmdRRHBmia8mOosqi5i7fTs0vv">
+                    Перекрытия, копирование из КР
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    <div class="sub-group-title">Дополнительно</div>
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1Z9kugfB9Mi1VXtJZrZqO1X2mwGhtHViy68uwfP0xsCc/edit">
+                                                    Наименование
+                        </button>
+                        <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1P00nf8yGDXttnV7wgRxrXFdDGJnomsfLX1M1HLlgzYs/edit">
+                            Материалы
+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 3: Стены, колонны/пилоны 🔴   -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="14zA9-LlkkZhlKzgpWqGVxfEQKw9A2B8o">
+                    Стены, колонны/пилоны
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    <div class="sub-group-title">Дополнительно</div>
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1Cup4IFh2QM33MJ7I97IgidHHW6DOx_rtzglxWLqJ-A0/edit">
+                            Наименование
+                        </button>
+                        <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1P00nf8yGDXttnV7wgRxrXFdDGJnomsfLX1M1HLlgzYs/edit">
+                            Материалы
+                        </button>
+                        <button class="btn" data-type="link" data-url="https://rbi.standard.ds.do/index.php/ds-knowledge-base/bim-standard/ds4/%d0%b8%d0%bd%d1%81%d1%82%d1%80%d1%83%d0%bc%d0%b5%d0%bd%d1%82-%d1%81%d1%82%d0%b5%d0%bd%d0%b0/">
+                            Моделирование
+                        </button>
+                    </div>
+                </div>
+            </div>
+             <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 3: Помещения 🔴   -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="14zA9-LlkkZhlKzgpWqGVxfEQKw9A2B8o">
+                    Помещения (исправить ссылку)
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    <div class="sub-group-title">Дополнительно</div>
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="video" data-id="15wfxiB-S9EkOUUVUfP-aymiW6-gm3EP5">
+                            Расстановка, маркировка
+                        </button>
+                        <button class="btn" data-type="video" data-id="1Zk17D787Npn1JwUxVvJG5SIqsCCZ09YU">
+                            Квартирография
+                        </button>
+                        <button class="btn" data-type="video" data-id="1cli-rFQqlDlU5tKb_sCjzBGlVIke0vp5">
+                            Корпус, Секция, Этаж в экспликацию
+                        </button>
+                        <button class="btn" data-type="video" data-id="1NSvUeDrvHQZuWJ2U-lqYNdEJfVlDl7nv">
+                            Цветовая схема
+                        </button>
+                    </div>
+                </div>
+            </div>
+             <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 3: Урок 3 (без дополнительных кнопок) 🔴   -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="13-MjT4nyFnv2kvuwlwusW3pQr0yVmIF9">
+                    Лестницы (модель в контексте)
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    <div class="sub-group-title">Дополнительно</div>
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="video" data-id="1Xg1bH41njSvX2O_0v9qIG0qpE8CoIGT7">
+                            Оформление на плане
+                        </button>
+                        <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1iDl5WljPIuMbnZL8m1cqXiR9aJt1WdTH99iIfpDj4Eg/edit">
+                            Ограждения
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 2: Урок 2 🔴                               -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="18cI3c9-8fDJdRZLSmeXKqyCwxWLMuJ8x">
+                    Окна, балконные блоки
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    <div class="sub-group-title">Дополнительно</div>
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="text" data-id="extra3">
+                            Пусто 
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 2: Урок 2 🔴                               -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="1O8wlJylmdRRHBmia8mOosqi5i7fTs0vv">
+                    Витражи (откорректировать видео)
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    <div class="sub-group-title">Допоплнительно</div>
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="text" data-id="extra3">
+                            Пусто
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 4: Урок 4 🔴                               -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="1tF15UulNvCOOQXXvwvsEn3WNJ6pmAKu5">
+                    Двери
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    <div class="sub-group-title">Дополинительно</div>
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="text" data-id="1PpaxQAPU3RBgvlykijPTWfHwsdu5fM7s">
+                            Марка дверного проема, ведомость дверных проемов 
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 4: Урок 4 🔴                               -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="1-B1uLsvkf0SnylqQbv7V3cJVqHIwdiyN">
+                    Зоны (СПП в ГНС, Общая площадь)
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    <div class="sub-group-title">Дополинтельно</div>
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="text" data-id="extra3">
+                            Пусто 
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 4: Урок 4 🔴                               -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="1-B1uLsvkf0SnylqQbv7V3cJVqHIwdiyN">
+                    Отделка
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    <div class="sub-group-title">Дополинтельно</div>
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="link" data-url="https://futurebim.ru/ru/revitplugins/fwall">
+                            Отделка стен
+                        </button>
+                        <button class="btn" data-type="link" data-url="https://futurebim.ru/ru/revitplugins/floorfinishing">
+                            Отделка полов
+                        </button>
+                        <button class="btn" data-type="link" data-url="https://futurebim.ru/ru/revitplugins/ceiling-finishing">
+                            Отделка потолков
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- ГРУППА: МАТЕРИАЛЫ                                            -->
+    <!-- ============================================================ -->
+    <div class="group">
+        <div class="group-title">
+            Дополнительные элементы, оформление
+        </div>
+        <div class="buttons-grid">
+
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 4: Инструкция 🔴                           -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="1o-7EJn3dX5s23a9PZCMQ6unSW8hYbzEU">
+                    Мебель, сантехника, поручни, шахты (отверстия в плитах)
+                </button>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 5: Правила 🔴                              -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="1eiUKz2hrIqHef_eNJaeC1wY4U5E3JYF6">
+                    Быстрые размеры
+                </button>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 6: Контакты 🔴                             -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                
+                <button class="btn" data-type="video" data-id="1eiUKz2hrIqHef_eNJaeC1wY4U5E3JYF6">
+                    Фильтры, элементы узлов (сделать видео из фитражей)
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- МОДАЛЬНОЕ ОКНО                                               -->
+    <!-- ============================================================ -->
+    <div class="overlay" id="overlay">
+        <div class="modal" id="modal">
+            <button class="close-btn" id="closeBtn">✕</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // 🔴🔴🔴 НАСТРОЙКИ (МЕНЯЙТЕ ТОЛЬКО ЭТО) 🔴🔴🔴
+        // ============================================================
+
+        const TEXTS = {
+            // Для дополнительных кнопок
+            extra1: {
+                title: 'PDF-файл к Уроку 1',
+                body: `<p>Ссылка на PDF: <a href="#" target="_blank">скачать</a></p>`
+            },
+            extra2: {
+                title: 'Ссылка на источник',
+                body: `<p>Ссылка: <a href="#" target="_blank">перейти</a></p>`
+            },
+            extra3: {
+                title: 'PDF-файл к Уроку 2',
+                body: `<p>Ссылка на PDF: <a href="#" target="_blank">скачать</a></p>`
+            },
+            // Для основных текстовых кнопок
+            text1: {
+                title: 'Инструкция',
+                body: `<p>Текст инструкции...</p>`
+            },
+            text2: {
+                title: 'Правила пользования',
+                body: `<p>Текст правил...</p>`
+            },
+            text3: {
+                title: 'Контакты',
+                body: `<p>📧 Email: support@example.com</p><p>📱 Телефон: +7 (999) 123-45-67</p>`
+            }
+        };
+
+        // ============================================================
+        // ⚙️ КОД РАБОТЫ (НЕ ТРОГАЙТЕ)
+        // ============================================================
+
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('closeBtn');
+        const modalContent = document.getElementById('modalContent');
+        const buttons = document.querySelectorAll('.btn');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const type = this.getAttribute('data-type');
+                const id = this.getAttribute('data-id');
+
+                if (type === 'video') {
+                    modalContent.innerHTML = `
+                        <iframe 
+                            src="https://drive.google.com/file/d/${id}/preview"
+                            allow="autoplay; encrypted-media"
+                            allowfullscreen
+                        ></iframe>
+                    `;
+                } else if (type === 'text') {
+                    const data = TEXTS[id];
+                    if (data) {
+                        modalContent.innerHTML = `
+                            <div class="text-content">
+                                <h2>${data.title}</h2>
+                                ${data.body}
+                            </div>
+                        `;
+                    } else {
+                        alert('Текст не найден! Проверьте ID: ' + id);
+                        return;
+                    }
+                } else if (type === 'link') {
+                    // 🔴🔴🔴 НОВЫЙ ОБРАБОТЧИК ДЛЯ ССЫЛОК 🔴🔴🔴
+                    const url = this.getAttribute('data-url');
+                    window.open(url, '_blank');
+                    return;
+                }
+
+                overlay.classList.add('active');
+            });
+        });
+
+        function closeModal() {
+            overlay.classList.remove('active');
+            modalContent.innerHTML = '';
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) closeModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+
+</body>
+</html>
