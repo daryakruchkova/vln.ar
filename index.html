@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VLN.AR</title>
-    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -90,6 +90,7 @@
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
             min-width: 250px;
             max-width: 100%;
+            width: 100%;
         }
 
         .btn:hover {
@@ -99,6 +100,13 @@
 
         .btn .icon {
             font-size: 20px;
+            flex-shrink: 0;
+            
+        }
+        .btn .btn-text {
+            flex: 0 1 auto;    /* 🔴 ТЕКСТ НЕ РАСТЯГИВАЕТСЯ, ТОЛЬКО ПО ШИРИНЕ ТЕКСТА 🔴 */
+            text-align: center; /* 🔴 ТЕКСТ ПРИЖАТ К ПРАВОМУ КРАЮ 🔴 */
+            
         }
 
         /* ========================================================== */
@@ -314,16 +322,21 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1Z9kugfB9Mi1VXtJZrZqO1X2mwGhtHViy68uwfP0xsCc/edit">
+                            <span class="icon material-icons">text_snippet</span>
                             Наименование
                         </button>
-                        <!-- 🔴🔴🔴 НОВАЯ КНОПКА СО ССЫЛКОЙ 🔴🔴🔴 -->
+                        
                         <button class="btn" data-type="video" data-id="1Dn-IiGDlYLrjzX3uHPTgM0c9maWz8IID">
+                            <span class="icon material-icons">play_circle</span>
                             Моделирование
                         </button>
                         <button class="btn" data-type="video" data-id="1-BZZjrEOxKzukpXR8zPqrczTzE7uKZ3W">
+                            <span class="icon material-icons">play_circle</span>
                             Создание новых видов (планов), шаблоны видов
                         </button>
+                        
                         <button class="btn" data-type="link" data-url="https://rbi.standard.ds.do/index.php/ds-knowledge-base/bim-standard/ds4/%d0%be%d1%81%d0%b8/">
+                            <span class="icon material-icons">text_snippet</span>
                             Дополнительно
                         </button>
                         
@@ -342,15 +355,19 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1Z9kugfB9Mi1VXtJZrZqO1X2mwGhtHViy68uwfP0xsCc/edit">
+                            <span class="icon material-icons">text_snippet</span>
                             Наименование
                         </button>
                         <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1P00nf8yGDXttnV7wgRxrXFdDGJnomsfLX1M1HLlgzYs/edit">
+                            <span class="icon material-icons">text_snippet</span>
                             Материалы
                         </button>
                         <button class="btn" data-type="video" data-id="1O8wlJylmdRRHBmia8mOosqi5i7fTs0vv">
+                            <span class="icon material-icons">play_circle</span>
                             Моделирование (копирование из связанных)
                         </button>
                         <button class="btn" data-type="link" data-url="https://rbi.standard.ds.do/index.php/ds-knowledge-base/bim-standard/ds4/%d0%b8%d0%bd%d1%81%d1%82%d1%80%d1%83%d0%bc%d0%b5%d0%bd%d1%82-%d0%bf%d0%b5%d1%80%d0%b5%d0%ba%d1%80%d1%8b%d1%82%d0%b8%d0%b5/">
+                            <span class="icon material-icons">text_snippet</span>
                             Дополнительно
                         </button>
 
@@ -369,15 +386,19 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1Cup4IFh2QM33MJ7I97IgidHHW6DOx_rtzglxWLqJ-A0/edit">
+                            <span class="icon material-icons">text_snippet</span>
                             Наименование
                         </button>
                         <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1P00nf8yGDXttnV7wgRxrXFdDGJnomsfLX1M1HLlgzYs/edit">
+                            <span class="icon material-icons">text_snippet</span>
                             Материалы
                         </button>
                         <button class="btn" data-type="video" data-id="14zA9-LlkkZhlKzgpWqGVxfEQKw9A2B8o">
+                            <span class="icon material-icons">play_circle</span>
                             Моделирование
                         </button>
                         <button class="btn" data-type="link" data-url="https://rbi.standard.ds.do/index.php/ds-knowledge-base/bim-standard/ds4/%d0%b8%d0%bd%d1%81%d1%82%d1%80%d1%83%d0%bc%d0%b5%d0%bd%d1%82-%d1%81%d1%82%d0%b5%d0%bd%d0%b0/">
+                            <span class="icon material-icons">text_snippet</span>
                             Дополнительно
                         </button>
                     </div>
@@ -396,19 +417,25 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="15wfxiB-S9EkOUUVUfP-aymiW6-gm3EP5">
+                            <span class="icon material-icons">play_circle</span>
                             Расстановка, маркировка
                         </button>
                         <button class="btn" data-type="video" data-id="1Zk17D787Npn1JwUxVvJG5SIqsCCZ09YU">
+                            <span class="icon material-icons">play_circle</span>
                             Квартирография
                         </button>
                         <button class="btn" data-type="video" data-id="1cli-rFQqlDlU5tKb_sCjzBGlVIke0vp5">
+                            <span class="icon material-icons">play_circle</span>
                             Корпус, Секция, Этаж в экспликацию
                         </button>
                         <button class="btn" data-type="video" data-id="1NSvUeDrvHQZuWJ2U-lqYNdEJfVlDl7nv">
+                            <span class="icon material-icons">play_circle</span>
                             Цветовая схема
                         </button>
+                        
                         <button class="btn" data-type="link" data-url="https://rbi.standard.ds.do/index.php/ds-knowledge-base/bim-standard/ds4/%d0%be%d1%81%d0%be%d0%b1%d0%b5%d0%bd%d0%bd%d0%be%d1%81%d1%82%d0%b8-%d1%80%d0%b0%d1%81%d1%81%d1%82%d0%b0%d0%bd%d0%be%d0%b2%d0%ba%d0%b8-%d0%bf%d0%be%d0%bc%d0%b5%d1%89%d0%b5%d0%bd%d0%b8%d0%b9/">
-                            Дополинтельно
+                            <span class="icon material-icons">text_snippet</span>
+                            Дополнительно
                         </button>
                     </div>
                 </div>
@@ -425,16 +452,20 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="13-MjT4nyFnv2kvuwlwusW3pQr0yVmIF9">
+                            <span class="icon material-icons">play_circle</span>
                             Моделирование
                         </button>
                         
                         <button class="btn" data-type="video" data-id="1Xg1bH41njSvX2O_0v9qIG0qpE8CoIGT7">
+                            <span class="icon material-icons">play_circle</span>
                             Оформление на плане
                         </button>
                         <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1iDl5WljPIuMbnZL8m1cqXiR9aJt1WdTH99iIfpDj4Eg/edit">
+                            <span class="icon material-icons">text_snippet</span>
                             Ограждения
                         </button>
                         <button class="btn" data-type="link" data-url="https://rbi.standard.ds.do/index.php/ds-knowledge-base/bim-standard/ds4/%d0%b8%d0%bd%d1%81%d1%82%d1%80%d1%83%d0%bc%d0%b5%d0%bd%d1%82-%d0%bb%d0%b5%d1%81%d1%82%d0%bd%d0%b8%d1%86%d0%b0/">
+                            <span class="icon material-icons">text_snippet</span>
                             Дополнительно
                         </button> 
                     </div>
@@ -452,6 +483,7 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="18cI3c9-8fDJdRZLSmeXKqyCwxWLMuJ8x">
+                            <span class="icon material-icons">play_circle</span>
                             Моделирование
                         </button>
                         
@@ -470,6 +502,7 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="1lBwIiL_7DZwt4N_htQvtKfxn7bETZTVN">
+                            <span class="icon material-icons">play_circle</span>
                             Моделирование
                         </button>
                         
@@ -488,9 +521,11 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="1tF15UulNvCOOQXXvwvsEn3WNJ6pmAKu5">
+                            <span class="icon material-icons">play_circle</span>
                             Моделирование (ПП) 
                         </button>
                         <button class="btn" data-type="video" data-id="1PpaxQAPU3RBgvlykijPTWfHwsdu5fM7s">
+                            <span class="icon material-icons">play_circle</span>
                             Марка дверного проема, ведомость дверных проемов 
                         </button>
                     </div>
@@ -508,6 +543,7 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="1-B1uLsvkf0SnylqQbv7V3cJVqHIwdiyN">
+                            <span class="icon material-icons">play_circle</span>
                             СПП в ГНС, Общая площадь 
                         </button>
 
@@ -527,15 +563,19 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="14erp1MxX1_977uFov9Tojb2laF_LZ62b">
+                            <span class="icon material-icons">play_circle</span>
                             Основной параметр для отделки ВО_Описание (ModPlus) !!!Сделать специально для отделки!
                         </button>
                         <button class="btn" data-type="link" data-url="https://futurebim.ru/ru/revitplugins/fwall">
+                            <span class="icon material-icons">play_circle</span>
                             Отделка стен
                         </button>
                         <button class="btn" data-type="link" data-url="https://futurebim.ru/ru/revitplugins/floorfinishing">
+                            <span class="icon material-icons">play_circle</span>
                             Отделка полов
                         </button>
                         <button class="btn" data-type="link" data-url="https://futurebim.ru/ru/revitplugins/ceiling-finishing">
+                            <span class="icon material-icons">play_circle</span>
                             Отделка потолков
                         </button>
                     </div>
@@ -546,7 +586,7 @@
 </div>
     <div class="divider"></div>
     <!-- ============================================================ -->
-    <!-- ГРУППА: МАТЕРИАЛЫ                                            -->
+    <!-- ГРУППА: Дополнительные элементы, оформление                                            -->
     <!-- ============================================================ -->
     <div class="group">
         <div class="group-title">
@@ -558,6 +598,7 @@
             <!-- ======================================================== -->
             <div class="btn-wrapper"> 
                 <button class="btn" data-type="video" data-id="1o-7EJn3dX5s23a9PZCMQ6unSW8hYbzEU">
+                    <span class="icon material-icons">play_circle</span>
                     Мебель, сантехника, поручни, шахты (отверстия в плитах)
                 </button>
             </div>
@@ -566,21 +607,23 @@
             <!-- ======================================================== -->
             <div class="btn-wrapper">
                 <button class="btn" data-type="video" data-id="1eiUKz2hrIqHef_eNJaeC1wY4U5E3JYF6">
+                    <span class="icon material-icons">text_snippet</span>
                     Быстрые размеры
                 </button>
             </div>
             <!-- ======================================================== -->
-            <!-- 🔴 КОНТЕЙНЕР 6: Фильтры, элементы узлов (сделать видео из фитражей) 🔴                             -->
+            <!-- 🔴 КОНТЕЙНЕР 6: Фильтры, элементы узлов 🔴                             -->
             <!-- ======================================================== -->
             <div class="btn-wrapper">
                 <button class="btn" data-type="video" data-id="178aJRqFV1gzXhooO56aMDwWf6QZhCPzL">
+                    <span class="icon material-icons">play_circle</span>
                     Фильтры, элементы узлов
                 </button>
             </div>
         </div>
         <div class="divider"></div>
         <!-- ============================================================ -->
-    <!-- ГРУППА: МАТЕРИАЛЫ                                            -->
+    <!-- ГРУППА: Ведомости, спецификации                                            -->
     <!-- ============================================================ -->
     <div class="group">
         <div class="group-title">
@@ -588,15 +631,31 @@
         </div>
         <div class="buttons-grid">
             <!-- ======================================================== -->
-            <!-- 🔴 КОНТЕЙНЕР 1: Мебель, сантехника, поручни, шахты (отверстия в плитах) 🔴                           -->
+            <!-- 🔴 КОНТЕЙНЕР 1: Экспликация помещений 🔴                           -->
             <!-- ======================================================== -->
             <div class="btn-wrapper"> 
                 <button class="btn" data-type="none">
                     Экспликация помещений
                 </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="video" data-id="1HwxFXswAd0chBGoj2JnED2yXpOcyCneM">
+                            <span class="icon material-icons">play_circle</span>
+                            Экспликация помещений
+                        </button>
+                        <button class="btn" data-type="video" data-id="1cli-rFQqlDlU5tKb_sCjzBGlVIke0vp5">
+                            <span class="icon material-icons">play_circle</span>
+                            Корпус, Секция, Этаж в экспликацию
+                        </button>
+                        
+                    </div>
+                </div>
+                
             </div>
             <!-- ======================================================== -->
-            <!-- 🔴 КОНТЕЙНЕР 5: Быстрые размеры 🔴                              -->
+            <!-- 🔴 КОНТЕЙНЕР 5: Ведомости типов стен и перегородок 🔴                              -->
             <!-- ======================================================== -->
             <div class="btn-wrapper">
                 <button class="btn" data-type="none">
@@ -607,12 +666,15 @@
                     
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="14erp1MxX1_977uFov9Tojb2laF_LZ62b">
+                            <span class="icon material-icons">play_circle</span>
                             Наружных стен
                         </button>
                         <button class="btn" data-type="video" data-id="1jkjJnRlM4pLjypHtKhFxB7XzzMaiM7J7">
+                            <span class="icon material-icons">play_circle</span>
                             Каркасных стен и перегородок
                         </button>
                         <button class="btn" data-type="video" data-id="1ec_Mv1_5a_cS6r8kZLeam2zfdAdqryju">
+                            <span class="icon material-icons">play_circle</span>
                             Внутренних кладочных стен и кладочных перегородок
                         </button>
                     </div>
@@ -620,7 +682,7 @@
 
             </div>
             <!-- ======================================================== -->
-            <!-- 🔴 КОНТЕЙНЕР 6: Фильтры, элементы узлов (сделать видео из фитражей) 🔴                             -->
+            <!-- 🔴 КОНТЕЙНЕР 6: Спецификации матералов стен 🔴                             -->
             <!-- ======================================================== -->
             <div class="btn-wrapper">
                 <button class="btn">
@@ -630,16 +692,38 @@
                 <div class="sub-group">
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="1ec_Mv1_5a_cS6r8kZLeam2zfdAdqryju">
+                            <span class="icon material-icons">play_circle</span>
                             Внутренних кладочных стен и кладочных перегородок
                         </button>
                         <button class="btn" data-type="video" data-id="1x0xUzgYn0V_oSuUQ7ewue-BBJaBLI9ym">
+                            <span class="icon material-icons">play_circle</span>
                             Каркасных стен и перегородок
                         </button>
                         
                     </div>
                 </div>
             </div>
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 5: Двери 🔴                              -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                <button class="btn" data-type="none">
+                    Ведомости и спецификации для дверей
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="video" data-id="1PpaxQAPU3RBgvlykijPTWfHwsdu5fM7s">
+                            <span class="icon material-icons">play_circle</span>
+                            Ведомость дверных проемов 
+                        </button>
+                    </div>
+                </div>
+
+            </div>
         </div>
+        
         <div class="divider"></div>
     </div>
     <!-- ============================================================ -->
