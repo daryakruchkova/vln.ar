@@ -101,6 +101,10 @@
         .btn .icon {
             font-size: 20px;
             flex-shrink: 0;
+            width: 24px;        /* 🔴 ШИРИНА ИКОНКИ 🔴 */
+            height: 24px;       /* 🔴 ВЫСОТА ИКОНКИ 🔴 */
+            object-fit: contain; /* 🔴 ЧТОБЫ КАРТИНКА НЕ РАСТЯГИВАЛАСЬ 🔴 */
+            flex-shrink: 0;
             
         }
         .btn .btn-text {
@@ -541,7 +545,7 @@
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="1tF15UulNvCOOQXXvwvsEn3WNJ6pmAKu5">
                             <span class="icon material-icons">play_circle</span>
-                            Моделирование (ПП) 
+                            Моделирование 
                         </button>
                         <button class="btn" data-type="video" data-id="1PpaxQAPU3RBgvlykijPTWfHwsdu5fM7s">
                             <span class="icon material-icons">play_circle</span>
@@ -563,7 +567,11 @@
                     <div class="buttons-vertical">
                         <button class="btn" data-type="video" data-id="1-B1uLsvkf0SnylqQbv7V3cJVqHIwdiyN">
                             <span class="icon material-icons">play_circle</span>
-                            СПП в ГНС, Общая площадь 
+                            СПП в ГНС, Общая площадь, Площадь застройки 
+                        </button>
+                        <button class="btn" data-type="link" data-url="https://docs.google.com/document/d/1PMlV8zg0WVISXqXpGznfHbFIAWxW6uHG7a0UVXO3mtA/edit?tab=t.0">
+                            <span class="icon material-icons">text_snippet</span>
+                            Дополнительно
                         </button>
 
                         
@@ -741,6 +749,69 @@
                 </div>
 
             </div>
+        </div>
+        <div class="divider"></div>
+    </div>
+    <!-- ГРУППА: Полезные кнопки плагинов                                            -->
+    <!-- ============================================================ -->
+    <div class="group">
+        <div class="group-title">
+            Полезные кнопки плагинов
+        </div>
+        <div class="buttons-grid">
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 1: FutureBim 🔴                           -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper"> 
+                
+                <button class="btn" data-type="none">
+                    FutureBim
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="video" data-id="1U_ihe9G6tCos7mmXFvT9GfrMkBE0D9w7">
+                            <img src="images/сумма парметров FutureBim.png" alt="Play" class="icon">
+                            Если нужно посчитать сумму параметров элементов
+                        </button>
+                        <button class="btn" data-type="video" data-id="1hnnFHFd9qoja1x3k92N9tNxgCXWwlBRQ">
+                            <img src="images/значение этажа FutureBim.png" alt="Play" class="icon">
+                            Если нужно присвоить номер этажа элементам
+                        </button>
+                        <button class="btn" data-type="video" data-id="1actANR6A2jKDjWwlFdydxb3xi0Uc4bG1">
+                            <img src="images/марка помещений FutureBim.png" alt="Play" class="icon">
+                            Если нужно переместить марку помещения в угол
+                        </button>
+                        <button class="btn" data-type="video" data-id="11nbInBs1s-11P9yfL2Zybia0ilEYAlor">
+                            <img src="images/растянуть помещения FutureBim.png" alt="Play" class="icon">
+                            Если помещение не достает до пола/потолка
+                        </button>   
+                    </div>
+                </div>
+                
+            </div>
+            <!-- ======================================================== -->
+            <!-- 🔴 КОНТЕЙНЕР 5: ModPlus 🔴                              -->
+            <!-- ======================================================== -->
+            <div class="btn-wrapper">
+                <button class="btn" data-type="none">
+                    ModPlus
+                </button>
+                <!-- Дополнительные кнопки (опционально) -->
+                <div class="sub-group">
+                    
+                    <div class="buttons-vertical">
+                        <button class="btn" data-type="video" data-id="1Itj2aQw9e6xRo5TxAjOUvEap1a2qSabJ">
+                            <img src="images/cтруктуру в параметр ModPlus.png" alt="Play" class="icon">
+                            Если нужно записать слои (структуру) стены в параметр 
+                        </button>
+                        
+                    </div>
+                </div>
+
+            </div>
+            
+            
         </div>
         
         <div class="divider"></div>
